@@ -5,25 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close" />
 </head>
 <body>
-    <button class="showDialog">New Book</button>
-    <dialog>
+    <header>
+        <div class="header">
+        <h1>Library</h1>
+        <button class="show-dialog">Add Books</button>
+        </div>
+    </header>
+    <div class="content">
+        <h2>My books:</h2>
+    </div>
+    <dialog class="new-book">
+            <button class="close-button"><span class="material-symbols-outlined">close</span></button>
             <form action="" class="add-new-book">
+            <div class="form-div">
+            <p>Title:</p>
             <input type="text" name="" id="title-input" placeholder="Title" required>
+            </div>
 
+            <div class="form-div">
+            <p>Author:</p>
             <input type="text" name="" id="author-input" placeholder="Author" required>
+            </div>
 
-            <input type="number" name="" id="number-of-page-input" placeholder="Number of pages" required>
+            <div class="form-div">
+            <p>Number of pages:</p>
+            <input type="text" pattern="[0-9]+" name="" id="number-of-page-input" placeholder="123" required>
+            </div>
 
+            <div class="form-read">
+            <p>Read ?</p>
             <input type="checkbox" id="read-input">
+            <label for="read-input"></label>
+            </div>
 
-            <button type="submit">Add</button>
+            <button class="submit" type="submit">Add</button>
 
             </form>
         </dialog>
     <div class="container">
-          
+        
+        
     </div>
     <script src="./script.js"></script>
 </body>

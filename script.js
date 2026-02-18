@@ -3,11 +3,12 @@ let myLibrary = [];
 const container = document.querySelector(".container");
 const form = document.querySelector(".add-new-book");
 const dialog = document.querySelector("dialog");
-const showDialog = document.querySelector(".showDialog");
+const showDialog = document.querySelector(".show-dialog");
 const titleInput = document.querySelector("#title-input");
 const authorInput = document.querySelector("#author-input");
 const pageInput = document.querySelector("#number-of-page-input");
 const readInput = document.querySelector("#read-input");
+const closeButton = document.querySelector(".close-button");
 
 
 function Book(title, author, page, read){
@@ -41,6 +42,7 @@ function displayBook(){
     container.innerHTML = "";
     myLibrary.forEach(book =>{
     const newDiv = document.createElement("div");
+    newDiv.classList.add("book-display");
     newDiv.textContent = `${book.title} by ${book.author} - ${book.page} pages`;
 
     const buttonDelete = document.createElement("button");
@@ -96,6 +98,11 @@ form.addEventListener("submit", (e) =>{
 
     addBookToLibrary(title, author, page, read);
     displayBook();
+    dialog.close();
+    form.reset();
+});
+
+closeButton.addEventListener("click", () =>{
     dialog.close();
     form.reset();
 });
