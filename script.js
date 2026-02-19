@@ -140,7 +140,7 @@ form.addEventListener("submit", (e) =>{
 
     addBookToLibrary(title, author, page, read);
     displayBook();
-    container.lastChild.classList.add("new-book");
+    container.lastElementChild.classList.add("new-book");
     dialog.close();
     form.reset();
 });
