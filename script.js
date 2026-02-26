@@ -1,4 +1,4 @@
-let myLibrary = [];
+
 
 const container = document.querySelector(".container");
 const form = document.querySelector(".add-new-book");
@@ -11,37 +11,39 @@ const readInput = document.querySelector("#read-input");
 const closeButton = document.querySelector(".close-button");
 
 
-function Book(title, author, page, read){
+class Book {
+  constructor(title, author, page, read) {
     this.title = title;
     this.author = author;
     this.page = page;
     this.read = read;
     this.bookId = crypto.randomUUID();
+  }
 
-};
-
-Book.prototype.toggleRead = function(){
-    if(this.read){
-        this.read = false;
-    } else {
-        this.read = true;
-    }
+  toggleRead() {
+    this.read = !this.read;
+  }
 };
  
 
-function addBookToLibrary(title, author, page, read){
+
+class Library{
+    constructor(){
+        this.books = [];
+    }
+
+    addBookToLibrary(title, author, page, read){
     const newBook = new Book(title, author, page, read);
-
-    myLibrary.push(newBook);
-
+    this.books.push(newBook);
+    }
 };
 
-
+const myLibrary = new Library();
 
 function displayBook(){
     container.innerHTML = "";
 
-    if(myLibrary.length === 0){
+    if(myLibrary.books.length === 0){
         const noBook = document.createElement("p");
         noBook.textContent = "add some books to your library"
         noBook.classList.add("no-book");
@@ -50,7 +52,7 @@ function displayBook(){
 
     
 
-    myLibrary.forEach(book =>{
+    myLibrary.books.forEach(book =>{
     const newDiv = document.createElement("div");
     newDiv.classList.add("book-card");
 
@@ -84,10 +86,10 @@ function displayBook(){
     buttonDelete.addEventListener("click", (e) =>{
         const bookId = e.target.dataset.id;
 
-        const result = myLibrary.filter(book => {
+        const result = myLibrary.books.filter(book => {
             return book.bookId !== bookId
         });
-        myLibrary = result;
+        myLibrary.books = result;
 
         displayBook();
     })
@@ -101,7 +103,7 @@ function displayBook(){
     buttonRead.addEventListener("click", (e) => {
         const bookId = e.target.dataset.id;
 
-        const book = myLibrary.find((book) => book.bookId === bookId);
+        const book = myLibrary.books.find((book) => book.bookId === bookId);
         book.toggleRead();
 
         displayBook();  
@@ -138,7 +140,7 @@ form.addEventListener("submit", (e) =>{
     const page = pageInput.value;
     const read = readInput.checked;
 
-    addBookToLibrary(title, author, page, read);
+    myLibrary.addBookToLibrary(title, author, page, read);
     displayBook();
     container.lastElementChild.classList.add("new-book");
     dialog.close();
