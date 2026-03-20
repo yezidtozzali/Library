@@ -9,7 +9,9 @@ const authorInput = document.querySelector("#author-input");
 const pageInput = document.querySelector("#number-of-page-input");
 const readInput = document.querySelector("#read-input");
 const closeButton = document.querySelector(".close-button");
-
+const errorTitle = document.getElementById("title-error");
+const errorAuthor = document.getElementById("author-error");
+const errorPage = document.getElementById("page-error");
 
 function Book(title, author, page, read){
     this.title = title;
@@ -21,11 +23,7 @@ function Book(title, author, page, read){
 };
 
 Book.prototype.toggleRead = function(){
-    if(this.read){
-        this.read = false;
-    } else {
-        this.read = true;
-    }
+    this.read = !this.read;
 };
  
 
@@ -130,13 +128,45 @@ showDialog.addEventListener("click", () =>{
     dialog.showModal();
 });
 
+let isValid = true;
+
 form.addEventListener("submit", (e) =>{
     e.preventDefault();
+
+
+    if(titleInput.validity.valueMissing){
+        errorTitle.classList.add("error");
+        errorTitle.textContent = "The title must be filled";
+        isValid = false;
+    }else{
+        errorTitle.textContent = ""};
+
+    if(authorInput.validity.valueMissing){
+        errorAuthor.classList.add("error");
+        errorAuthor.textContent = "The author name must be filled";
+        isValid = false;
+    }else{
+        errorAuthor.textContent = ""};
+
+    if(pageInput.validity.valueMissing){
+        errorPage.classList.add("error");
+        errorPage.textContent = "The number of pages must be filled";
+        isValid = false;
+    }else{
+        errorPage.textContent = ""};
+
+    if(!isValid){
+        return;
+    };
+
+    
 
     const title = titleInput.value;
     const author = authorInput.value;
     const page = pageInput.value;
     const read = readInput.checked;
+
+    
 
     addBookToLibrary(title, author, page, read);
     displayBook();
@@ -145,9 +175,20 @@ form.addEventListener("submit", (e) =>{
     form.reset();
 });
 
-closeButton.addEventListener("click", () =>{
+
+
+dialog.addEventListener("close", () => {
+    isValid = true;
+    errorAuthor.textContent = "";
+    errorPage.textContent = "";
+    errorTitle.textContent = "";
     dialog.close();
     form.reset();
+});
+
+closeButton.addEventListener("click", () =>{
+    dialog.close();
+    
 });
 
 

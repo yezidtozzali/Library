@@ -20,24 +20,27 @@
     </div>
     <dialog class="new-book">
             <button class="close-button"><span class="material-symbols-outlined">close</span></button>
-            <form action="" class="add-new-book">
+            <form action="" class="add-new-book" novalidate>
             <div class="form-div">
-            <p>Title:</p>
-            <input type="text" name="" id="title-input" placeholder="Title" required>
+            <p>Title</p>
+            <input type="text" name="" id="title-input" placeholder="Title"  required>
+            <p class="error" id="title-error"></p>
             </div>
 
             <div class="form-div">
-            <p>Author:</p>
+            <p>Author</p>
             <input type="text" name="" id="author-input" placeholder="Author" required>
+            <p class="error" id="author-error"></p>
             </div>
 
             <div class="form-div">
-            <p>Number of pages:</p>
+            <p>Number of pages</p>
             <input type="text" pattern="[0-9]+" name="" id="number-of-page-input" placeholder="123" required>
+            <p class="error" id="page-error"></p>
             </div>
 
             <div class="form-read">
-            <p>Read ?</p>
+            <p>Read?</p>
             <input type="checkbox" id="read-input">
             <label for="read-input"></label>
             </div>

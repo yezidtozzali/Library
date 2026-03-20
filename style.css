@@ -65,7 +65,7 @@ dialog{
     border-radius: 20px;
     gap: 12px;
     position: relative;
-    height: 470px;
+    height: 500px;
     width: 300px;
     background-color: #ffffff;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
@@ -92,10 +92,7 @@ dialog p{
     gap: 32px;
     margin: 40px 60px 0px 60px;
 }
-.add-new-book p{
-    font-size: 20px;
-    color: #000000;
-}
+
 
 .add-new-book input{
     border: solid 2px rgb(192, 192, 192);
@@ -137,6 +134,7 @@ dialog p{
     display: flex;
     flex-direction: column;
     gap: 8px;
+    width: auto;
 }
 
 #read-input {
@@ -297,4 +295,10 @@ h2{
 
 .not-read:hover{
     background-color: #d60400;
+}
+
+.error{
+    font-size: 12px;
+    color: #ff0400;
+    height: 14px;
 }
